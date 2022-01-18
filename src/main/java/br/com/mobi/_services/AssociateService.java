@@ -15,13 +15,13 @@ public class AssociateService {
 	@Autowired
 	private AssociateRepository repo;
 	
-	public AssociateModel findById(Integer id) {
-		Optional<AssociateModel> associate = repo.findById(id);
+	public AssociateModel findByCPF(String cpf) {
+		Optional<AssociateModel> associate = repo.findByCPF(cpf);
 		
 		if(associate.isEmpty())
 			return associate.get();
 		
-		throw new ObjectNotFoundException("Associate not found. Id: " + id);
+		throw new ObjectNotFoundException("Associate not found. CPF: " + cpf);
 		
 	}
 	

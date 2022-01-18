@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.mobi._model.AgendaModel;
 import br.com.mobi._model.VoteModel;
 import br.com.mobi._repository.AgendaRepository;
+import br.com.mobi._services.integration.ExternalCommunicationService;
 import br.com.mobi.dto.AgendaDTO;
 import br.com.mobi.dto.AgendaResultDTO;
 import br.com.mobi.dto.VoteDTO;
@@ -29,6 +30,9 @@ public class AgendaService {
 	@Autowired
 	private VoteService voteService;
 	
+	@Autowired
+	private ExternalCommunicationService externalCommunicationService;
+	
 	public AgendaModel save(AgendaModel agenda) {
 		return repo.save(agenda);
 	}
@@ -44,6 +48,7 @@ public class AgendaService {
 		AgendaModel agenda = findById(voteDTO.getIdAgenda());
 		sessionService.isItExpired(agenda.getSession().getExpiration());
 		hasThisAssociatedAlreadyVoted(agenda, voteDTO);
+		externalCommunicationService.canThisCpfVote(voteDTO.getCpf());
 		addVoteToAgenda(voteDTO, agenda);
 	}
 	
@@ -77,17 +82,17 @@ public class AgendaService {
 				numberOfVotesSim++; 
 			else
 				numberOfVotesNao++;
-		};
+		}
 		
 		return numberOfVotesSim > numberOfVotesNao ? "Sim" : "Não";
 	}
 	
 	public void hasThisAssociatedAlreadyVoted(AgendaModel agenda, VoteDTO voteDTO){
 		
-		Optional<VoteModel> voteAlreadyExist = agenda.getVotes().stream().filter(e -> e.getAssociate().getId() == voteDTO.getIdAssociate()).findFirst();
+		Optional<VoteModel> voteAlreadyExist = agenda.getVotes().stream().filter(e -> e.getAssociate().getCPF().equals(voteDTO.getCpf())).findFirst();
 		
 		if(voteAlreadyExist.isPresent())
-			throw new RuleException("This user already has a vote on this agenda..");
+			throw new RuleException("This user already has a vote on this agenda.");
 		
 	}
 

@@ -18,7 +18,7 @@ public class VoteService {
 	private TypeVoteService typeVoteService;
 	
 	public VoteModel getVote(VoteDTO voteDTO) {
-		AssociateModel associate = associateService.findById(voteDTO.getIdAssociate());
+		AssociateModel associate = associateService.findByCPF(voteDTO.getCpf());
 		TypeVoteModel typeVote = typeVoteService.findTypeVoteByDescription(voteDTO.getDescriptionVote());
 		VoteModel vote = new VoteModel(null, typeVote, associate);
 		return vote;

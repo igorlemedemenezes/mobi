@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class VoteDTO {
 
-	private Integer idAssociate;
+	private String cpf;
 	private Integer idAgenda;
 	private String descriptionVote;
 	

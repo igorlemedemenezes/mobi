@@ -30,4 +30,6 @@ public class SessionController {
 		return ResponseEntity.created(new URI(agenda.getId().toString())).build();
 	}
 	
+
+	
 }

@@ -1,4 +1,4 @@
-package br.com.mobi.response.handler;
+ package br.com.mobi.response.handler;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,11 +34,9 @@ public class ResponseHandler extends ResponseEntityExceptionHandler{
 	}
 	
     public ResponseEntity<StandardAnswerDTO> success(Object obj, HttpServletRequest request) {
-
     	StandardAnswerDTO resp = new StandardAnswerDTO(System.currentTimeMillis(), HttpStatus.OK.value(), "Success",
                 "Data processed successfully.", request.getRequestURI(), obj);
         return ResponseEntity.ok().body(resp);
-
     }
 	
 }

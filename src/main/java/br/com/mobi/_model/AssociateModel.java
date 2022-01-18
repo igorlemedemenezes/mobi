@@ -26,5 +26,7 @@ public class AssociateModel {
 	private Integer id;
 	
 	private String name;
+	
+	private String CPF;
 
 }
