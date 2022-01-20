@@ -5,10 +5,8 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class VoteDTO {
+public class AssociateDTO {
 
-	private String vote;
-	private AgendaDTO agenda;
-	private AssociateDTO associate;
+	private String cpf;
 	
 }

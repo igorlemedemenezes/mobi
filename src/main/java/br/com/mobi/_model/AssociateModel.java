@@ -25,8 +25,6 @@ public class AssociateModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private String name;
-	
 	private String CPF;
 
 }

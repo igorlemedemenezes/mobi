@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 public class AgendaDTO {
 
 	@NotNull
-	private String nome;
+	private Integer id;
+	
+	private String name;
 	
 }

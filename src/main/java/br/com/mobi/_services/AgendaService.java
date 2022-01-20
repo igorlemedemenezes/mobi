@@ -39,16 +39,16 @@ public class AgendaService {
 	
 	@Transactional	
 	public AgendaModel insert(@Valid AgendaDTO agendaDTO) {
-		AgendaModel agenda = new AgendaModel(null, agendaDTO.getNome(), null, null);
+		AgendaModel agenda = new AgendaModel(null, agendaDTO.getName(), null, null);
 		return repo.save(agenda);
 	}
 
 	@Transactional
 	public void addVote(VoteDTO voteDTO) {
-		AgendaModel agenda = findById(voteDTO.getIdAgenda());
+		AgendaModel agenda = findById(voteDTO.getAgenda().getId());
 		sessionService.isItExpired(agenda.getSession().getExpiration());
 		hasThisAssociatedAlreadyVoted(agenda, voteDTO);
-		externalCommunicationService.isThisCpfAbleToVote(voteDTO.getCpf());
+		externalCommunicationService.isThisCpfAbleToVote(voteDTO.getAssociate().getCpf());
 		addVoteToAgenda(voteDTO, agenda);
 	}
 	
@@ -64,7 +64,6 @@ public class AgendaService {
 	private void addVoteToAgenda(VoteDTO voteDTO, AgendaModel agenda) {
 		VoteModel vote = voteService.getVote(voteDTO);
 		agenda.getVotes().add(vote);
-		save(agenda);
 	}
 	
 	public AgendaResultDTO getResultAgenda(Integer id) {
@@ -89,7 +88,7 @@ public class AgendaService {
 	
 	public void hasThisAssociatedAlreadyVoted(AgendaModel agenda, VoteDTO voteDTO){
 		
-		Optional<VoteModel> voteAlreadyExist = agenda.getVotes().stream().filter(e -> e.getAssociate().getCPF().equals(voteDTO.getCpf())).findFirst();
+		Optional<VoteModel> voteAlreadyExist = agenda.getVotes().stream().filter(e -> e.getAssociate().getCPF().equals(voteDTO.getAssociate().getCpf())).findFirst();
 		
 		if(voteAlreadyExist.isPresent())
 			throw new RuleException("This user already has a vote on this agenda.");

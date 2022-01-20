@@ -38,14 +38,13 @@ public class SessionService {
 			session = new SessionModel(null, sessionDTO.getExpiration(), agenda);
 		else 
 			session = new SessionModel(null, 
-					LocalDateTime.now().plusMinutes(Integer.parseInt(Objects.requireNonNull(env.getProperty("expiration.minutes")))), 
-					agenda); 
+					LocalDateTime.now().plusMinutes(Integer.parseInt(Objects.requireNonNull(env.getProperty("expiration.minutes")))), agenda); 
 		agenda.setSession(session);
 		return agendaService.save(agenda);
 	}
 
 	public void isItExpired(LocalDateTime expiration) {
-		if(LocalDateTime.now().isBefore(expiration))
+		if(LocalDateTime.now().isAfter(expiration))
 			throw new RuleException("This agenda is already expired.");
 	}
 	

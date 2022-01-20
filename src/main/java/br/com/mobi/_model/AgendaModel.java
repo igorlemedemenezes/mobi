@@ -37,7 +37,7 @@ public class AgendaModel implements Serializable{
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "agenda")
 	private SessionModel session;
 	
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.PERSIST)
 	private List<VoteModel> votes;
 	
 }

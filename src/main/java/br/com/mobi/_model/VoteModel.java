@@ -1,5 +1,6 @@
 package br.com.mobi._model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,10 +25,10 @@ public class VoteModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.PERSIST)
 	private TypeVoteModel typeVoteModel;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.PERSIST)
 	private AssociateModel associate;
 	
 }

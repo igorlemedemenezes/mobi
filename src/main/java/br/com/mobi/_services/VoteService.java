@@ -18,10 +18,9 @@ public class VoteService {
 	private TypeVoteService typeVoteService;
 	
 	public VoteModel getVote(VoteDTO voteDTO) {
-		AssociateModel associate = associateService.findByCPF(voteDTO.getCpf());
-		TypeVoteModel typeVote = typeVoteService.findTypeVoteByDescription(voteDTO.getDescriptionVote());
-		VoteModel vote = new VoteModel(null, typeVote, associate);
-		return vote;
+		AssociateModel associate = associateService.findByCPF(voteDTO.getAssociate().getCpf());
+		TypeVoteModel typeVote = typeVoteService.findTypeVoteByDescription(voteDTO.getVote());
+		return new VoteModel(null, typeVote, associate);
 	}
 	
 }

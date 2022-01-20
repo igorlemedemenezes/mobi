@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import br.com.mobi._model.AssociateModel;
 import br.com.mobi._repository.AssociateRepository;
-import br.com.mobi.exceptions.ObjectNotFoundException;
 
 @Service
 public class AssociateService {
@@ -18,10 +17,10 @@ public class AssociateService {
 	public AssociateModel findByCPF(String cpf) {
 		Optional<AssociateModel> associate = repo.findByCPF(cpf);
 		
-		if(associate.isEmpty())
+		if(associate.isPresent())
 			return associate.get();
 		
-		throw new ObjectNotFoundException("Associate not found. CPF: " + cpf);
+		return new AssociateModel(null, cpf);
 		
 	}
 	
