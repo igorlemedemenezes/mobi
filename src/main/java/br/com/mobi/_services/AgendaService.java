@@ -48,7 +48,7 @@ public class AgendaService {
 		AgendaModel agenda = findById(voteDTO.getIdAgenda());
 		sessionService.isItExpired(agenda.getSession().getExpiration());
 		hasThisAssociatedAlreadyVoted(agenda, voteDTO);
-		externalCommunicationService.canThisCpfVote(voteDTO.getCpf());
+		externalCommunicationService.isThisCpfAbleToVote(voteDTO.getCpf());
 		addVoteToAgenda(voteDTO, agenda);
 	}
 	

@@ -25,7 +25,7 @@ public class ExternalCommunicationService {
         this.environment = environment;
     }
     
-    public void canThisCpfVote(String cpf) {
+    public void isThisCpfAbleToVote(String cpf) {
     	try {
     		String url = environment.getProperty("integration-check-cpf") + cpf;
     		ResponseEntity<?> response = restTemplate.exchange(url, HttpMethod.GET, null, String.class);
@@ -35,11 +35,6 @@ public class ExternalCommunicationService {
     	}catch(HttpStatusCodeException e) {
     		throw new IntegrationException("An error occurred with the communication of the CPF validation server.");
     	}
-		
-    	
-
-    		
-    	
     	
     }
     

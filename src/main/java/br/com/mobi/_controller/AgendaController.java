@@ -22,7 +22,7 @@ import br.com.mobi.dto.VoteDTO;
 //import br.com.mobi.response.handler.ResponseHandler;
 
 @RestController
-@RequestMapping(value = "/agenda")
+@RequestMapping(value = "/v1/agenda")
 public class AgendaController {
 	
 	@Autowired

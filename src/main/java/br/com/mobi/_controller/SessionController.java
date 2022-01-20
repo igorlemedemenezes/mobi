@@ -17,7 +17,7 @@ import br.com.mobi._services.SessionService;
 import br.com.mobi.dto.SessionDTO;
 
 @RestController
-@RequestMapping(value = "/session")
+@RequestMapping(value = "/v1/session")
 public class SessionController {
 
 	
