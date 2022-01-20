@@ -40,7 +40,7 @@ public class AgendaService {
 	@Transactional	
 	public AgendaModel insert(@Valid AgendaDTO agendaDTO) {
 		AgendaModel agenda = new AgendaModel(null, agendaDTO.getName(), null, null);
-		return repo.save(agenda);
+		return save(agenda);
 	}
 
 	@Transactional

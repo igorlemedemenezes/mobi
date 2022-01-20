@@ -16,36 +16,50 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.mobi._model.AgendaModel;
 import br.com.mobi._services.AgendaService;
-import br.com.mobi.dto.AgendaResultDTO;
 import br.com.mobi.dto.AgendaDTO;
+import br.com.mobi.dto.AgendaResultDTO;
 import br.com.mobi.dto.VoteDTO;
-//import br.com.mobi.response.handler.ResponseHandler;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController
+@Api(value = "agenda")
 @RequestMapping(value = "/v1/agenda")
 public class AgendaController {
 	
 	@Autowired
 	private AgendaService agendaService;
 	
-//	@Autowired
-//	private ResponseHandler responseHandler;
-	
+    @ApiOperation(value="Creating agenda.")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Agenda created.")
+    })
 	@PostMapping
-	private ResponseEntity<Void> insert(@Valid @RequestBody AgendaDTO agendaDTO){
+	public ResponseEntity<Void> insert(@Valid @RequestBody AgendaDTO agendaDTO){
 		AgendaModel agenda = agendaService.insert(agendaDTO);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(agenda.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	
+    @ApiOperation(value="Receive new vote.")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Vote receive.")
+    })
 	@PostMapping(value = "/receive-votes")
-	private ResponseEntity<Void> receiveVotes(@Valid @RequestBody VoteDTO voteDTO){
+	public ResponseEntity<Void> receiveVotes(@Valid @RequestBody VoteDTO voteDTO){
 		agendaService.addVote(voteDTO);
 		return ResponseEntity.ok().body(null);
 	}
 	
+    @ApiOperation(value="Return result.")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Return result."),
+            @ApiResponse(code = 404, message = "Not found.")
+    })
 	@GetMapping(value = "/result-agenda/{id}")
-	private ResponseEntity<AgendaResultDTO> getResultAgenda(@PathVariable Integer id){
+	public ResponseEntity<AgendaResultDTO> getResultAgenda(@PathVariable Integer id){
 		AgendaResultDTO agendaResultDTO = agendaService.getResultAgenda(id);
 		return ResponseEntity.ok().body(agendaResultDTO);
 	}

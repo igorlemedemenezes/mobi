@@ -1,13 +1,14 @@
-package br.com.skytef.inovacao.model_project;
+package br.com.mobi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ModelProjectApplicationTests {
+class MobiApplicationTests {
 
 	@Test
 	void contextLoads() {
 	}
 
+	
 }
