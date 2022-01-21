@@ -24,27 +24,27 @@ Tarefa Bônus 1 - Integração com sistemas externos
     GET https://user-info.herokuapp.com/users/{cpf}
     Caso o CPF seja inválido, a API retornará o HTTP Status 404 (Not found). Você pode usar geradores de CPF para gerar CPFs válidos;
     Caso o CPF seja válido, a API retornará se o usuário pode (ABLE_TO_VOTE) ou não pode (UNABLE_TO_VOTE) executar a operação Exemplos de retorno do serviço
+    
+    R- Foi implementado o service chamado ExternalCommunicationService para fazer comunicação externa com outras API, neste caso o end-point de CPF.  
 
-Tarefa Bônus 2 - Mensageria e filas
+Tarefa Bônus 2 - Performance
+	⦁	Imagine que sua aplicação possa ser usada em cenários que existam centenas de milhares de votos. Ela deve se comportar de maneira performática nesses cenários
+	⦁	Testes de performance são uma boa maneira de garantir e observar como sua aplicação se comporta
 
-    Classificação da informação: Uso Interno O resultado da votação precisa ser informado para o restante da plataforma, isso deve ser feito preferencialmente através de mensageria. Quando a sessão de votação fechar, poste uma mensagem com o resultado da votação.
-
-Tarefa Bônus 3 - Performance
-
-    Imagine que sua aplicação possa ser usada em cenários que existam centenas de milhares de votos. Ela deve se comportar de maneira performática nesses cenários;
-    Testes de performance são uma boa maneira de garantir e observar como sua aplicação se comporta.
 
 Tarefa Bônus 4 - Versionamento da API
 
     Como você versionaria a API da sua aplicação? Que estratégia usar?
-
+	
+	R- Versionamento direto na rota, pois fica claro para o cliente o versionamento da API.
+	
 ## Ferramentas utilizada
 
-# Java 8
-# Spring
-# Maven
-# Hibernate
-# JPA
-# Swagger
-# JUnit
-# Mockito
+### Java 8
+### Spring
+### Maven
+### Hibernate
+### JPA
+### Swagger
+### JUnit
+### Mockito
