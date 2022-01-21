@@ -1,4 +1,4 @@
-package br.com.mobi;
+package br.com.mobi.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

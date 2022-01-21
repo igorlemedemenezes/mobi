@@ -26,7 +26,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @Api(value = "agenda")
-@RequestMapping(value = "/v1/agenda")
+@RequestMapping(value = "/agenda")
 public class AgendaController {
 	
 	@Autowired

@@ -1,4 +1,4 @@
-package br.com.mobi;
+package br.com.mobi.services;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

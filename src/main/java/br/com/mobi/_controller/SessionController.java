@@ -20,7 +20,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping(value = "/v1/session")
+@RequestMapping(value = "/session")
 public class SessionController {
 
 	
